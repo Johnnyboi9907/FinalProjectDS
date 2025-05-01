@@ -18,10 +18,16 @@ public abstract class Animal  {
         this.quality = quality;
     }
 
+    /**
+     * run-time polymorphism. To be overridden in every Animal subclass.
+     */
     public void makeNoise() {
         System.out.println("Makes some generic sound.");
     }
 
+    /**
+     * Comparator which sorts an ArrayList of Animal by age descending.
+     */
     public static class AgeComparator implements Comparator<Animal>{
         @Override
         public int compare(Animal o1, Animal o2) {
@@ -29,6 +35,9 @@ public abstract class Animal  {
         }
     }
 
+    /**
+     * Comparator which sorts an ArrayList of Animal by nickname ascending.
+     */
     public static class NameComparator implements Comparator<Animal>{
         @Override
         public int compare(Animal o1, Animal o2) {

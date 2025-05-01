@@ -9,7 +9,7 @@ public class Main {
         ArrayList<Animal> animals = new ArrayList<>();
         animals.add(l1);
         animals.add(m1);
-        Collections.sort(animals, new Animal.AgeComparator()); // oldest to youngest
+        animals.sort(new Animal.AgeComparator()); // oldest to youngest
         System.out.println(animals);
     }
 }
