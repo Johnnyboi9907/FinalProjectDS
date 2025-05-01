@@ -16,7 +16,7 @@ public class Lion extends Animal{
     @Override
     public String toString() {
         return "Lion{" + super.toString() +
-                "mane_color='" + mane_color + '\'' +
+                ", mane color: " + mane_color +
                 '}';
     }
 

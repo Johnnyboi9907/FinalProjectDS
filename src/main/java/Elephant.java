@@ -16,7 +16,7 @@ public class Elephant extends Animal{
     @Override
     public String toString() {
         return "Elephant{" + super.toString() +
-                "weight=" + weight +
+                ", weight: " + weight +
                 '}';
     }
 

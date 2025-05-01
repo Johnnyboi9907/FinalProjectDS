@@ -38,11 +38,10 @@ public abstract class Animal  {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "nickname: " + nickname + '\'' +
+        return "{nickname: " + nickname +
                 ", gender: " + gender +
                 ", age: " + age +
-                ", quality: " + quality + '\'' +
+                ", quality: " + quality +
                 '}';
     }
 

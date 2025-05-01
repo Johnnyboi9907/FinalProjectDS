@@ -16,7 +16,7 @@ public class Monkey extends Animal{
     @Override
     public String toString() {
         return "Monkey{" + super.toString() +
-                "breed='" + breed + '\'' +
+                ", breed: " + breed +
                 '}';
     }
 

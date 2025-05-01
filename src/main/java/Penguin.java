@@ -16,7 +16,7 @@ public class Penguin extends Animal{
     @Override
     public String toString() {
         return "Penguin{" + super.toString() +
-                "height=" + height +
+                ", height: " + height +
                 '}';
     }
 
