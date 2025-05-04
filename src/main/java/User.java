@@ -5,15 +5,11 @@ public abstract class User implements UpdateAccountInterface {
     private String name;
     private String password;
     private int age;
-    private int id;
 
-    public static int nextID = 1;
-
-    public User(String name, String password, int age, int id) {
+    public User(String name, String password, int age) {
         this.name = name;
         this.password = password;
         this.age = age;
-        this.id = nextID++;
     }
 
     @Override
@@ -45,7 +41,6 @@ public abstract class User implements UpdateAccountInterface {
         return "{name: " + name +
                 ", password: " + password +
                 ", age: " + age +
-                ", id: " + id +
                 '}';
     }
 
@@ -53,12 +48,12 @@ public abstract class User implements UpdateAccountInterface {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return age == user.age && id == user.id && Objects.equals(name, user.name) && Objects.equals(password, user.password);
+        return age == user.age && Objects.equals(name, user.name) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, password, age, id);
+        return Objects.hash(name, password, age);
     }
 
     public String getName() {
@@ -83,13 +78,5 @@ public abstract class User implements UpdateAccountInterface {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
