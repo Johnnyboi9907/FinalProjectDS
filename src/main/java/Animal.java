@@ -74,14 +74,6 @@ public abstract class Animal  {
         this.nickname = nickname;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
     public int getAge() {
         return age;
     }
@@ -96,5 +88,9 @@ public abstract class Animal  {
 
     public void setQuality(String quality) {
         this.quality = quality;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 }

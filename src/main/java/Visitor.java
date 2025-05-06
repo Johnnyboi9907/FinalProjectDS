@@ -3,7 +3,7 @@ import java.util.*;
 public class Visitor extends User implements Comparable<Visitor>{
     private int id;
     private Animal my_animal;
-    private LinkedList<Animal> viewed_animals;
+    private List<Animal> viewed_animals; // this List is to add all visited animals of this visitor
 
     private static int nextID = 1;
 
@@ -35,20 +35,23 @@ public class Visitor extends User implements Comparable<Visitor>{
         }
     }
 
-    public static void sortByAnimal(List<Animal> animals) {
-        //TODO use Comparable to sort the Visitors based on my_animal (nickname ascending first, then age descending).
-        // Maybe I can use NameComparator and AgeComparator in Animal class for this?
+    public void visitAnimal(List<Animal> animals) {
+        System.out.println("Which animal would you like to visit? (Enter their nickname)");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.next();
+        boolean found = false;
+        for (Animal animal : animals) {
+            if (answer.equals(animal.getNickname())) {
+                this.setMy_animal(animal);
+                viewed_animals.add(animal);
+                System.out.println("Visit successful!");
+                found = true; break;
+            }
+        }
+        if (!found) {
+            System.out.println("This animal is not in the zoo.");
+        }
     }
-
-    public void visitAnimal(Animal animal) {
-        this.setMy_animal(animal);
-        viewed_animals.add(animal);
-    }
-
-//    public static List<Animal> searchAnimal(String keyword, List<Animal> animals) {
-//        TODO use stream to filter out all Animals that do not contain the keyword, and return all those that do as a List.
-//         The searching system searches animals based on their quality. These are the recommended animals for the visitor to meet.
-//    }
 
     @Override
     public String toString() {
