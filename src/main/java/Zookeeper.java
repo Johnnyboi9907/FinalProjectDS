@@ -5,23 +5,17 @@ import java.util.Objects;
 
 public class Zookeeper extends User{
     private String id;
-    private List<Visitor> visitors;
-    private List<Animal> animals;
 
     private static int nextID = 1;
 
     public Zookeeper() {
         super("Unknown", "Unknown", 0);
         id = "Unknown";
-        visitors = null;
-        animals = null;
     }
 
     public Zookeeper(String name, String password, int age) {
         super(name, password, age);
         this.id = String.format("%04d", nextID++);
-        this.visitors = new ArrayList<>();
-        this.animals = new LinkedList<>();
     }
 
     public void addNewAnimal() {
@@ -48,12 +42,12 @@ public class Zookeeper extends User{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Zookeeper zookeeper = (Zookeeper) o;
-        return Objects.equals(id, zookeeper.id) && Objects.equals(visitors, zookeeper.visitors) && Objects.equals(animals, zookeeper.animals);
+        return Objects.equals(id, zookeeper.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, visitors, animals);
+        return Objects.hash(super.hashCode(), id);
     }
 
     public String getId() {

@@ -1,7 +1,7 @@
 import java.util.Comparator;
 import java.util.Objects;
 
-public abstract class Animal  {
+public abstract class Animal {
     private String nickname;
     private Gender gender;
     private int age;
@@ -9,6 +9,13 @@ public abstract class Animal  {
 
     enum Gender {
         MALE, FEMALE
+    }
+
+    public Animal() {
+        this.nickname = "Bob";
+        this.gender = Gender.MALE;
+        this.age = 0;
+        this.quality = "boring";
     }
 
     public Animal(String nickname, Gender gender, int age, String quality) {
@@ -28,7 +35,7 @@ public abstract class Animal  {
     /**
      * Comparator which sorts an ArrayList of Animal by age descending.
      */
-    public static class AgeComparator implements Comparator<Animal>{
+    public static class AgeComparator implements Comparator<Animal> {
         @Override
         public int compare(Animal o1, Animal o2) {
             return o2.age - o1.age;
@@ -38,7 +45,7 @@ public abstract class Animal  {
     /**
      * Comparator which sorts an ArrayList of Animal by nickname ascending.
      */
-    public static class NameComparator implements Comparator<Animal>{
+    public static class NameComparator implements Comparator<Animal> {
         @Override
         public int compare(Animal o1, Animal o2) {
             return o1.nickname.compareToIgnoreCase(o2.nickname);

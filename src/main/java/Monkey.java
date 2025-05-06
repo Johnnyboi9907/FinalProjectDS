@@ -1,7 +1,15 @@
 import java.util.Objects;
 
-public class Monkey extends Animal{
+public class Monkey extends Animal {
     private String breed;
+
+    /**
+     * this no argus constructor is the default animal which will be the first visit for all visitors
+     */
+    public Monkey() {
+        super();
+        this.breed = "chimpanzee";
+    }
 
     public Monkey(String nickname, Gender gender, int age, String quality, String breed) {
         super(nickname, gender, age, quality);

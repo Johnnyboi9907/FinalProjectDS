@@ -14,7 +14,6 @@ public class Main {
         animals.add(m1);
         animals.add(e1);
         animals.add(p1);
-        animals.sort(new Animal.AgeComparator()); // oldest to youngest
 
         menu(animals);
     }
@@ -36,21 +35,32 @@ public class Main {
         boolean exit = false;
 
         if (role == 'v') {
-            Visitor visitor = new Visitor(name, password, age, null);
+            Visitor visitor = new Visitor(name, password, age, new Monkey());
 
             while (!exit) {
                 System.out.println("Select your command: ");
-                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Exit.");
+                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Change password\n5. Change age\n6. View profile\n7. Exit.");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
+                        System.out.println("sort animals by name or age?");
+                        String choice = scanner.next();
+                        if (choice.equalsIgnoreCase("name")) {
+                            animals.sort(new Animal.NameComparator());
+                        } else if (choice.equalsIgnoreCase("age")) {
+                            animals.sort(new Animal.AgeComparator());
+                        }
                         for (Animal animal : animals) {
                             System.out.println(animal);
                         }
                         break;
                     case 2: visitor.visitAnimal(animals); break;
                     case 3: visitor.viewVisitedAnimals(); break;
-                    case 4:
+                    case 4: visitor.updatePassword(); break;
+                    case 5: visitor.updateAge(); break;
+                    case 6:
+                        System.out.println(visitor); break;
+                    case 7:
                         System.out.println("Logging out...");
                         exit = true; break;
                     default:

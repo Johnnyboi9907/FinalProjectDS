@@ -20,7 +20,10 @@ public abstract class User implements UpdateAccountInterface {
         if (old_password.equals(password)) {
             System.out.println("Enter new password: ");
             String new_password = scanner.next();
-            this.setPassword(new_password);
+            if (!old_password.equals(new_password)) {
+                this.setPassword(new_password);
+                System.out.println("Successfully updated password!");
+            } else System.out.println("Invalid input. Your new password cannot match your old one.");
         } else System.out.println("Invalid password.");
     }
 
@@ -32,7 +35,10 @@ public abstract class User implements UpdateAccountInterface {
         if (old_age == age) {
             System.out.println("Enter new age: ");
             int new_age = scanner.nextInt();
-            this.setAge(new_age);
+            if (old_age != new_age) {
+                this.setAge(new_age);
+                System.out.println("Successfully updated age!");
+            } else System.out.println("Invalid input. Your new age cannot match your old one.");
         } else System.out.println("Invalid age.");
     }
 

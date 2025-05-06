@@ -19,6 +19,7 @@ public class Visitor extends User implements Comparable<Visitor>{
         this.id = nextID++;
         this.my_animal = my_animal;
         this.viewed_animals = new LinkedList<>();
+        viewed_animals.add(my_animal);
     }
 
     @Override
