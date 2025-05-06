@@ -33,24 +33,53 @@ public class Main {
         int age = scanner.nextInt();
         System.out.println("Select your role: Visitor (v) or Zookeeper (z).");
         char role = scanner.next().charAt(0);
+        boolean exit = false;
 
         if (role == 'v') {
             Visitor visitor = new Visitor(name, password, age, null);
-            System.out.println("Select your command: ");
-            System.out.println("1. browse all animals\n2. visit an animal\n3. view history of visited animals.");
-            int command = scanner.nextInt();
-            switch (command) {
-                case 1:
-                    for (Animal animal : animals) {
-                        System.out.println(animal);
-                    }
-                    break;
-                case 2: visitor.visitAnimal(animals); break;
+
+            while (!exit) {
+                System.out.println("Select your command: ");
+                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Exit.");
+                int command = scanner.nextInt();
+                switch (command) {
+                    case 1:
+                        for (Animal animal : animals) {
+                            System.out.println(animal);
+                        }
+                        break;
+                    case 2: visitor.visitAnimal(animals); break;
+                    case 3: visitor.viewVisitedAnimals(); break;
+                    case 4:
+                        System.out.println("Logging out...");
+                        exit = true; break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                }
             }
+            scanner.close();
+
         }
 
-        else if (role == 'z') {
+        else if (role == 'z' && age > 16) {
             Zookeeper zookeeper = new Zookeeper(name, password, age);
+
+            while (!exit) {
+                System.out.println("Select your command: ");
+                System.out.println("\n1. View visitors\n2. Visit most popular animal\n3. Add a new animal\n4. Exit");
+                int command = scanner.nextInt();
+                switch (command) {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        System.out.println("Logging out...");
+                        exit = true; break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                }
+            }
+            scanner.close();
         }
 
         else System.out.println("Invalid input.");

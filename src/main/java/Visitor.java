@@ -19,7 +19,6 @@ public class Visitor extends User implements Comparable<Visitor>{
         this.id = nextID++;
         this.my_animal = my_animal;
         this.viewed_animals = new LinkedList<>();
-        viewed_animals.add(my_animal);
     }
 
     @Override
@@ -66,12 +65,12 @@ public class Visitor extends User implements Comparable<Visitor>{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Visitor visitor = (Visitor) o;
-        return id == visitor.id && Objects.equals(my_animal, visitor.my_animal);
+        return id == visitor.id && Objects.equals(my_animal, visitor.my_animal) && Objects.equals(viewed_animals, visitor.viewed_animals);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, my_animal);
+        return Objects.hash(super.hashCode(), id, my_animal, viewed_animals);
     }
 
     public int getId() {
