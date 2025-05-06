@@ -6,6 +6,12 @@ public abstract class User implements UpdateAccountInterface {
     private String password;
     private int age;
 
+    public User() {
+        this.name = "Unknown";
+        this.password = "Unknown";
+        this.age = 0;
+    }
+
     public User(String name, String password, int age) {
         this.name = name;
         this.password = password;

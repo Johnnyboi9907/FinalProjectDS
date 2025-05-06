@@ -18,16 +18,16 @@ public class Zookeeper extends User{
         this.id = String.format("%04d", nextID++);
     }
 
-    public void addNewAnimal() {
-        //TODO zookeepers can add a new animal to the zoo
+    public void addNewAnimal(List<Animal> animals) {
+        //TODO zookeepers can add a new animal to the zoo. TEXTIO??
     }
 
-    public void viewVisitors() {
+    public void viewVisitors(List<Visitor> visitors) {
         //TODO zookeepers can view all visitors and the animal they are currently visiting (my_animal)
     }
 
     public void visitMostPopularAnimal() {
-        //TODO find the most popular animal amongst all visitors and go to it
+        //TODO find the most popular animal amongst all visitors and go to it. make a map: key = animal nickname, value = how many visitors per animal.
     }
 
     @Override

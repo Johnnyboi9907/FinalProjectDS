@@ -9,16 +9,18 @@ public class Main {
         Animal m1 = new Monkey("George", Animal.Gender.MALE, 3, "curious", "chimpanzee");
         Animal e1 = new Elephant("Dumbo", Animal.Gender.MALE, 2, "magical", 500.0);
         Animal p1 = new Penguin("Skipper", Animal.Gender.MALE, 6, "smart", 12);
-        List<Animal> animals = new ArrayList<>();
+        List<Animal> animals = new ArrayList<>(10);
         animals.add(l1);
         animals.add(m1);
         animals.add(e1);
         animals.add(p1);
 
-        menu(animals);
+        List<Visitor> visitors = new ArrayList<>();
+
+        menu(animals, visitors);
     }
 
-    public static void menu(List<Animal> animals) {
+    public static void menu(List<Animal> animals, List<Visitor> visitors) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Log in");
@@ -36,10 +38,11 @@ public class Main {
 
         if (role == 'v') {
             Visitor visitor = new Visitor(name, password, age, new Monkey());
+            visitors.add(visitor);
 
             while (!exit) {
                 System.out.println("Select your command: ");
-                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Change password\n5. Change age\n6. View profile\n7. Exit.");
+                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Change password\n5. Change age\n6. View profile\n7. Add new account\n8. Exit.");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
@@ -60,7 +63,8 @@ public class Main {
                     case 5: visitor.updateAge(); break;
                     case 6:
                         System.out.println(visitor); break;
-                    case 7:
+                    case 7: break; //TODO maybe exit the small while loop and enter a bigger while loop from the start of logging in 
+                    case 8:
                         System.out.println("Logging out...");
                         exit = true; break;
                     default:
@@ -76,13 +80,20 @@ public class Main {
 
             while (!exit) {
                 System.out.println("Select your command: ");
-                System.out.println("\n1. View visitors\n2. Visit most popular animal\n3. Add a new animal\n4. Exit");
+                System.out.println("\n1. View visitors\n2. Visit most popular animal\n3. Add a new animal\n4. Change password\n5. Change age\n6. View profile\n7. Exit");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
+                        for (Visitor v : visitors) {
+                            System.out.println(v);
+                        } break;
                     case 2:
                     case 3:
-                    case 4:
+                    case 4: zookeeper.updatePassword(); break;
+                    case 5: zookeeper.updateAge(); break;
+                    case 6:
+                        System.out.println(zookeeper); break;
+                    case 7:
                         System.out.println("Logging out...");
                         exit = true; break;
                     default:
