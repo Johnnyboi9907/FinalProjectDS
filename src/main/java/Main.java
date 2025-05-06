@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,5 +10,11 @@ public class Main {
         animals.add(m1);
         animals.sort(new Animal.AgeComparator()); // oldest to youngest
         System.out.println(animals);
+
+        Visitor v1 = new Visitor("John", "password", 18, l1);
+        System.out.println(v1); // my_animal is a lion
+        v1.visitAnimal(m1);
+        System.out.println(v1); // my_animal is a monkey
+        v1.viewVisitedAnimals();
     }
 }

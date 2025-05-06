@@ -1,22 +1,37 @@
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-public class Visitor extends User{
+public class Visitor extends User implements Comparable<Visitor>{
     private int id;
     private Animal my_animal;
-    private List<Animal> animals;
+    private LinkedList<Animal> viewed_animals;
 
     private static int nextID = 1;
 
-    public Visitor(String name, String password, int age) {
-        super(name, password, age);
-        this.id = nextID++;
+    public Visitor() {
+        super("Unknown", "Unknown", 0);
+        this.id = 0;
+        this.my_animal = null;
+        this.viewed_animals = null;
     }
 
-    public static void viewAnimals(List<Animal> animals) {
-        for (Animal animal : animals) {
-            System.out.println(animal.toString());
-            System.out.println('\n');
+    public Visitor(String name, String password, int age, Animal my_animal) {
+        super(name, password, age);
+        this.id = nextID++;
+        this.my_animal = my_animal;
+        this.viewed_animals = new LinkedList<>();
+        viewed_animals.add(my_animal);
+    }
+
+    @Override
+    public int compareTo(Visitor o) {
+        return o.getAge() - this.getAge();
+    }
+
+    public void viewVisitedAnimals() {
+        System.out.println("You are currently viewing: " + this.my_animal);
+        System.out.println("\nHere is your history of previously viewed animals: ");
+        for (Animal animal : viewed_animals) {
+            System.out.println(animal);
         }
     }
 
@@ -25,8 +40,9 @@ public class Visitor extends User{
         // Maybe I can use NameComparator and AgeComparator in Animal class for this?
     }
 
-    public static void pickAnimal(Animal animal) {
-        //TODO my_animal.set(animal)
+    public void visitAnimal(Animal animal) {
+        this.setMy_animal(animal);
+        viewed_animals.add(animal);
     }
 
 //    public static List<Animal> searchAnimal(String keyword, List<Animal> animals) {
@@ -38,6 +54,7 @@ public class Visitor extends User{
     public String toString() {
         return "Visitor{" + super.toString() +
                 ", id: " + id +
+                ", Animal: " + my_animal.toString() +
                 '}';
     }
 
@@ -46,15 +63,23 @@ public class Visitor extends User{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Visitor visitor = (Visitor) o;
-        return id == visitor.id;
+        return id == visitor.id && Objects.equals(my_animal, visitor.my_animal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id);
+        return Objects.hash(super.hashCode(), id, my_animal);
     }
 
     public int getId() {
         return id;
+    }
+
+    public Animal getMy_animal() {
+        return my_animal;
+    }
+
+    public void setMy_animal(Animal my_animal) {
+        this.my_animal = my_animal;
     }
 }
