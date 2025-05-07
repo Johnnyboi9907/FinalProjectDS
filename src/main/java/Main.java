@@ -42,8 +42,8 @@ public class Main {
             visitors.add(visitor);
 
             while (!exit) {
-                System.out.println("Select your command: ");
-                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Change password\n5. Change age\n6. View profile\n7. Exit.");
+                System.out.println("\nSelect your command: ");
+                System.out.println("1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Search for an animal quality\n5. Change password\n6. Change age\n7. View profile\n8. Exit.");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
@@ -60,11 +60,16 @@ public class Main {
                         break;
                     case 2: visitor.visitAnimal(animals); break;
                     case 3: visitor.viewVisitedAnimals(); break;
-                    case 4: visitor.updatePassword(); break;
-                    case 5: visitor.updateAge(); break;
-                    case 6:
-                        System.out.println(visitor); break;
+                    case 4:
+                        Set<String> results = visitor.searchForAnimalQuality(animals);
+                        if (results.isEmpty()) {
+                            System.out.println("There are no animals with this quality.");
+                        } else System.out.println(results + " has this quality."); break;
+                    case 5: visitor.updatePassword(); break;
+                    case 6: visitor.updateAge(); break;
                     case 7:
+                        System.out.println(visitor); break;
+                    case 8:
                         System.out.println("Logging out...");
                         exit = true; break;
                     default:
@@ -79,8 +84,8 @@ public class Main {
             Zookeeper zookeeper = new Zookeeper(name, password, age);
 
             while (!exit) {
-                System.out.println("Select your command: ");
-                System.out.println("\n1. Browse all visitors\n2. View the number of visitors per animal\n3. Visit most popular animal\n4. Write a new animal recommendation\n5. Change password\n6. Change age\n7. View profile\n8. Exit");
+                System.out.println("\nSelect your command: ");
+                System.out.println("1. Browse all visitors\n2. View the number of visitors per animal\n3. Visit most popular animal\n4. Write a new animal recommendation\n5. Change password\n6. Change age\n7. View profile\n8. Exit");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:

@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Visitor extends User implements Comparable<Visitor>{
     private int id;
@@ -51,6 +53,16 @@ public class Visitor extends User implements Comparable<Visitor>{
         if (!found) {
             System.out.println("This animal is not in the zoo.");
         }
+    }
+
+    public Set<String> searchForAnimalQuality(List<Animal> animals) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter an animal quality: ");
+        String keyword = scanner.next();
+        Stream<Animal> stream = animals.stream();
+        return stream.filter(animal -> animal.getQuality().contains(keyword))
+                .map(Animal::getNickname)
+                .collect(Collectors.toSet());
     }
 
     @Override
