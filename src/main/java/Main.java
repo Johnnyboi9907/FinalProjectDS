@@ -93,7 +93,7 @@ public class Main {
                         for (Map.Entry<String, Integer> entry : map.entrySet()) {
                             System.out.println(entry.getKey() + ": " + entry.getValue() + " visitors");
                         } break;
-                    case 3: break;
+                    case 3: zookeeper.visitMostPopularAnimal(zookeeper.viewNumberOfVisitorsPerAnimal(visitors)); break;
                     case 4: zookeeper.writeNewAnimalRecommendation();break;
                     case 5: zookeeper.updatePassword(); break;
                     case 6: zookeeper.updateAge(); break;

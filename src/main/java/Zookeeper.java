@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -50,14 +49,24 @@ public class Zookeeper extends User{
         }
     }
 
-    public void visitMostPopularAnimal(List<Animal> animals, List<Animal> visitors) {
-        //TODO find the most popular animal amongst all visitors and go to it. make a map: key = animal nickname, value = how many visitors per animal.
+    public void visitMostPopularAnimal(Map<String, Integer> map) {
+        String max_key = null;
+        int max_value = Integer.MIN_VALUE;
 
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > max_value) {
+                max_value = entry.getValue();
+                max_key = entry.getKey();
+            }
+        }
+
+        System.out.println(max_key + " is the most popular animal with " + max_value + " visitors.");
+        System.out.println("...");
+        System.out.println("You have visited " + max_key + ".");
     }
 
     public Map<String, Integer> viewNumberOfVisitorsPerAnimal(List<Visitor> visitors) {
         Map<String, Integer> map = new TreeMap<>();
-        int count = 0;
         for (Visitor visitor : visitors) {
             Animal animal = visitor.getMy_animal();
             if (animal != null) {
