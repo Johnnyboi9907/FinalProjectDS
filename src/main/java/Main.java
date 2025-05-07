@@ -80,7 +80,7 @@ public class Main {
 
             while (!exit) {
                 System.out.println("Select your command: ");
-                System.out.println("\n1. Browse all visitors\n2. View the number of visitors per animal\n3. Visit most popular animal\n4. Add a new animal\n5. Change password\n6. Change age\n7. View profile\n8. Exit");
+                System.out.println("\n1. Browse all visitors\n2. View the number of visitors per animal\n3. Visit most popular animal\n4. Write a new animal recommendation\n5. Change password\n6. Change age\n7. View profile\n8. Exit");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
@@ -94,7 +94,7 @@ public class Main {
                             System.out.println(entry.getKey() + ": " + entry.getValue() + " visitors");
                         } break;
                     case 3: break;
-                    case 4: break;
+                    case 4: zookeeper.writeNewAnimalRecommendation();break;
                     case 5: zookeeper.updatePassword(); break;
                     case 6: zookeeper.updateAge(); break;
                     case 7:
