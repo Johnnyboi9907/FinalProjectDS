@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +13,10 @@ public class Main {
         animals.add(p1);
 
         List<Visitor> visitors = new ArrayList<>();
+        visitors.add(new Visitor("John", "pass", 17, l1));
+        visitors.add(new Visitor("Michael", "LOL123", 18, l1));
+        visitors.add(new Visitor("Nick", "abc456", 40, m1));
+        visitors.add(new Visitor("George", "password", 30, e1));
 
         menu(animals, visitors);
     }
@@ -42,7 +43,7 @@ public class Main {
 
             while (!exit) {
                 System.out.println("Select your command: ");
-                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Change password\n5. Change age\n6. View profile\n7. Add new account\n8. Exit.");
+                System.out.println("\n1. Browse all animals\n2. Visit an animal\n3. View history of visited animals\n4. Change password\n5. Change age\n6. View profile\n7. Exit.");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
@@ -63,8 +64,7 @@ public class Main {
                     case 5: visitor.updateAge(); break;
                     case 6:
                         System.out.println(visitor); break;
-                    case 7: break; //TODO maybe exit the small while loop and enter a bigger while loop from the start of logging in 
-                    case 8:
+                    case 7:
                         System.out.println("Logging out...");
                         exit = true; break;
                     default:
@@ -75,25 +75,31 @@ public class Main {
 
         }
 
-        else if (role == 'z' && age > 16) {
+        else if (role == 'z' && age > 18) {
             Zookeeper zookeeper = new Zookeeper(name, password, age);
 
             while (!exit) {
                 System.out.println("Select your command: ");
-                System.out.println("\n1. View visitors\n2. Visit most popular animal\n3. Add a new animal\n4. Change password\n5. Change age\n6. View profile\n7. Exit");
+                System.out.println("\n1. Browse all visitors\n2. View the number of visitors per animal\n3. Visit most popular animal\n4. Add a new animal\n5. Change password\n6. Change age\n7. View profile\n8. Exit");
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
-                        for (Visitor v : visitors) {
-                            System.out.println(v);
+                        Collections.sort(visitors);
+                        for (Visitor visitor : visitors) {
+                            System.out.println(visitor.getName() + ", age " + visitor.getAge() + ", id " + visitor.getId() + ", is currently visiting " + visitor.getMy_animal().getNickname() + ".");
                         } break;
                     case 2:
-                    case 3:
-                    case 4: zookeeper.updatePassword(); break;
-                    case 5: zookeeper.updateAge(); break;
-                    case 6:
-                        System.out.println(zookeeper); break;
+                        Map<String, Integer> map = zookeeper.viewNumberOfVisitorsPerAnimal(visitors);
+                        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                            System.out.println(entry.getKey() + ": " + entry.getValue() + " visitors");
+                        } break;
+                    case 3: break;
+                    case 4: break;
+                    case 5: zookeeper.updatePassword(); break;
+                    case 6: zookeeper.updateAge(); break;
                     case 7:
+                        System.out.println(zookeeper); break;
+                    case 8:
                         System.out.println("Logging out...");
                         exit = true; break;
                     default:

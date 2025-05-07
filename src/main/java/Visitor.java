@@ -41,7 +41,7 @@ public class Visitor extends User implements Comparable<Visitor>{
         String answer = scanner.next();
         boolean found = false;
         for (Animal animal : animals) {
-            if (answer.equals(animal.getNickname())) {
+            if (answer.equalsIgnoreCase(animal.getNickname())) {
                 this.setMy_animal(animal);
                 viewed_animals.add(animal);
                 System.out.println("Visit successful!");
