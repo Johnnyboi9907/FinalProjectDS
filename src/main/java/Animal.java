@@ -14,7 +14,7 @@ public abstract class Animal {
     public Animal() {
         this.nickname = "Bob";
         this.gender = Gender.MALE;
-        this.age = 0;
+        this.age = 8;
         this.quality = "boring";
     }
 

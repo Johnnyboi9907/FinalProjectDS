@@ -18,6 +18,27 @@ public class Zookeeper extends User{
         this.id = String.format("%04d", nextID++);
     }
 
+    /**
+     * Overridden method from UpdateAccountInterface which prevents the Zookeeper from changing age to less than 18 years old.
+     */
+    @Override
+    public void updateAge() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter current age: ");
+        int old_age = scanner.nextInt();
+        if (old_age == this.getAge()) {
+            System.out.println("Enter new age: ");
+            int new_age = scanner.nextInt();
+            if (old_age != new_age && new_age >= 18) {
+                this.setAge(new_age);
+                System.out.println("Successfully updated age!");
+            } else System.out.println("Invalid input. New age matches old age or new age is less than 18 years old.");
+        } else System.out.println("Invalid age.");
+    }
+
+    /**
+     * Zookeeper inputs a name, gender, age, quality and species. Then, java writes this to a file using TEXTIO (one row)
+     */
     public void writeNewAnimalRecommendation() {
         Scanner input = new Scanner(System.in);
         System.out.println("What is the animal's name?");
@@ -49,22 +70,11 @@ public class Zookeeper extends User{
         }
     }
 
-    public void visitMostPopularAnimal(Map<String, Integer> map) {
-        String max_key = null;
-        int max_value = Integer.MIN_VALUE;
-
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > max_value) {
-                max_value = entry.getValue();
-                max_key = entry.getKey();
-            }
-        }
-
-        System.out.println(max_key + " is the most popular animal with " + max_value + " visitors.");
-        System.out.println("...");
-        System.out.println("You have visited " + max_key + ".");
-    }
-
+    /**
+     * maps the animal nickname to the number of visitors currently visiting this animal.
+     * @param visitors the List of visitors
+     * @return a map, where the key is the nickname of the animal(String) and the value is the number of visitors visiting this animal(Integer).
+     */
     public Map<String, Integer> viewNumberOfVisitorsPerAnimal(List<Visitor> visitors) {
         Map<String, Integer> map = new TreeMap<>();
         for (Visitor visitor : visitors) {
@@ -75,6 +85,25 @@ public class Zookeeper extends User{
             }
         }
         return map;
+    }
+
+    /**
+     * uses the above method to get the animal with the most visitors.
+     * @param map the returned map from the above method
+     */
+    public void visitMostPopularAnimal(Map<String, Integer> map) {
+        String max_key = null;
+        int max_value = Integer.MIN_VALUE;
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > max_value) {
+                max_value = entry.getValue();
+                max_key = entry.getKey();
+            }
+        }
+        System.out.println(max_key + " is the most popular animal with " + max_value + " visitors.");
+        System.out.println("...");
+        System.out.println("You have visited " + max_key + ".");
     }
 
     @Override

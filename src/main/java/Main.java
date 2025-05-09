@@ -61,7 +61,9 @@ public class Main {
                     case 2: visitor.visitAnimal(animals); break;
                     case 3: visitor.viewVisitedAnimals(); break;
                     case 4:
-                        Set<String> results = visitor.searchForAnimalQuality(animals);
+                        System.out.println("Enter an animal quality: ");
+                        String keyword = scanner.next();
+                        Set<String> results = visitor.searchForAnimalQuality(animals, keyword);
                         if (results.isEmpty()) {
                             System.out.println("There are no animals with this quality.");
                         } else System.out.println(results + " has this quality."); break;
@@ -80,7 +82,7 @@ public class Main {
 
         }
 
-        else if (role == 'z' && age > 18) {
+        else if (role == 'z' && age >= 18) {
             Zookeeper zookeeper = new Zookeeper(name, password, age);
 
             while (!exit) {

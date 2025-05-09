@@ -18,6 +18,9 @@ public abstract class User implements UpdateAccountInterface {
         this.age = age;
     }
 
+    /**
+     * implemented method from UpdateAccountInterface which allows any User to change their password.
+     */
     @Override
     public void updatePassword() {
         Scanner scanner = new Scanner(System.in);
@@ -33,6 +36,9 @@ public abstract class User implements UpdateAccountInterface {
         } else System.out.println("Invalid password.");
     }
 
+    /**
+     * implemented method from UpdateAccountInterface which allows any User to change their age.
+     */
     @Override
     public void updateAge() {
         Scanner scanner = new Scanner(System.in);

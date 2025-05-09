@@ -29,6 +29,10 @@ public class Visitor extends User implements Comparable<Visitor>{
         return o.getAge() - this.getAge();
     }
 
+    /**
+     * prints out the toString method of my_animal (the one you are currently viewing)
+     * additionally, prints out all animals inside viewed_animals List, which contains all visited animals by the visitor.
+     */
     public void viewVisitedAnimals() {
         System.out.println("You are currently viewing: " + this.my_animal);
         System.out.println("\nHere is your history of previously viewed animals: ");
@@ -37,6 +41,10 @@ public class Visitor extends User implements Comparable<Visitor>{
         }
     }
 
+    /**
+     * sets my_animal to the Animal which contains the input as their nickname
+     * @param animals the List of animals in the zoo
+     */
     public void visitAnimal(List<Animal> animals) {
         System.out.println("Which animal would you like to visit? (Enter their nickname)");
         Scanner scanner = new Scanner(System.in);
@@ -55,10 +63,13 @@ public class Visitor extends User implements Comparable<Visitor>{
         }
     }
 
-    public Set<String> searchForAnimalQuality(List<Animal> animals) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an animal quality: ");
-        String keyword = scanner.next();
+    /**
+     * the user inputs a keyword, and a stream must filter out all animals whose quality does not contain the keyword.
+     * @param animals the List of animals in the zoo
+     * @param keyword the inputted keyword
+     * @return a Set of animal nicknames (these animals contain the keyword in their quality)
+     */
+    public Set<String> searchForAnimalQuality(List<Animal> animals, String keyword) {
         Stream<Animal> stream = animals.stream();
         return stream.filter(animal -> animal.getQuality().contains(keyword))
                 .map(Animal::getNickname)
