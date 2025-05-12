@@ -11,6 +11,7 @@ This is a sample Maven project set up with Git version control.
 # Deliverables
 
 - [Deliverable 1 PDF](doc/Deliverable1.pdf)
+- [Deliverable 4 PDF](doc/Deliverable4.pdf)
 
 # Project Description
 
